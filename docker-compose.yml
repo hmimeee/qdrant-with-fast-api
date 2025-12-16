@@ -1,0 +1,23 @@
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.15.1
+    container_name: qdrant
+    ports:
+      - "3336:6333"
+      - "3346:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+  fast_api:
+    build: ./fast_api
+    container_name: fast_api
+    depends_on:
+      - qdrant
+    ports:
+      - "8800:8800"
+    environment:
+      - QDRANT_URL=http://qdrant:6333
+      - API_KEY=b59cf76c-9e31-4520-bfb9-86a5d01b02cc
+
+volumes:
+  qdrant_data:

@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+fastembed
+qdrant-client==1.10.0
+PyMuPDF
+python-multipart
